@@ -28,7 +28,7 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault()
 
-      console.log("check", emailError.textContent)
+
       // reset error message to ''"
       emailError.textContent = ""
       passwordError.textContent = ""
@@ -43,6 +43,7 @@
           headers: { 'Content-Type': 'application/json' }
 
         })
+        // will print message from back end
         const message = await data.json()
         console.log(message)
         if (message.errors) {

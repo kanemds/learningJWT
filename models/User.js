@@ -30,6 +30,24 @@ UserSchema.pre('save', async function (next) {
 
 // UserSchema.post('save', function(next)){} is doing something after data is saved
 
+// login
+UserSchema.statics.login = async function (email, password) {
+  // this === instance model 
+  const user = await this.findOne({ email })
+  if (user) {
+    // compare the password that comes in with the exist password from user.password
+    const auth = await bcrypt.compare(password, user.password)
+    if (auth) {
+      return user
+    }
+    throw Error('Incorrect password')
+  }
+  throw Error('Incorrect email')
+}
+
+
+
+
 // must singular
 const User = mongoose.model('user', UserSchema)
 
