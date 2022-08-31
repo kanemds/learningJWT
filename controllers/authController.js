@@ -4,6 +4,7 @@ const handleErrors = (error) => {
   console.log(error.message, error.code)
   let err = { email: '', password: '' }
 
+  //this if from mongodb
   if (error.code === 11000) {
     err.email = 'that email is already registered'
     return err

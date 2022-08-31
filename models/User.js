@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
 
+
 // npm i validator library
 const { isEmail } = require('validator')
+const bcrypt = require('bcrypt')
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -18,6 +20,15 @@ const UserSchema = new mongoose.Schema({
   }
 })
 
+// can be 'remove'
+// do something before data is saved
+UserSchema.pre('save', async function (next) {
+  const salt = await bcrypt.genSalt()
+  this.password = await bcrypt.hash(this.password, salt)
+  next()
+})
+
+// UserSchema.post('save', function(next)){} is doing something after data is saved
 
 // must singular
 const User = mongoose.model('user', UserSchema)
