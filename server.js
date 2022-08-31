@@ -1,10 +1,14 @@
 const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
+const authRoutes = require('./routes/authRoutes')
 const app = express()
 const PORT = 3000
 
 app.use(express.static('public'))
+
+//  req.body will print info  
+app.use(express.json())
 
 app.set('view engine', 'ejs')
 
@@ -24,6 +28,6 @@ mongoose
   })
 
 app.get('/', (req, res) => res.render('home'))
-app.get('/coffee', (req, res) => res.render('coffee')
-)
+app.get('/coffee', (req, res) => res.render('coffee'))
+app.use(authRoutes)
 
