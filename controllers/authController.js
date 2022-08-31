@@ -6,6 +6,13 @@ const handleErrors = (error) => {
   console.log(error.message, error.code)
   let err = { email: '', password: '' }
 
+  if (error.message === 'Incorrect email') {
+    err.email = 'Email is not registerd'
+  }
+  if (error.message === 'Incorrect password') {
+    err.password = 'Password is invalid'
+  }
+
   //this if from mongodb
   if (error.code === 11000) {
     err.email = 'that email is already registered'
@@ -56,8 +63,11 @@ module.exports.login_post = async (req, res) => {
 
   try {
     const user = await User.login(email, password)
+    const token = createToken(user._id)
+    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 })
     res.status(200).json({ user: user._id })
   } catch (error) {
-    res.status(400).json({})
+    const errors = handleErrors(error)
+    res.status(400).json({ errors })
   }
 }
