@@ -1,11 +1,12 @@
 # learningJWT
 
 Tool:
-⋅⋅*Express 
-⋅⋅*ejs
-⋅⋅*bcrypt
-⋅⋅*jwt
-⋅⋅*Mongodb
+-express 
+-ejs
+-bcrypt
+-jwt
+-mongoose
+-mongodb
 
 
 ![1](https://user-images.githubusercontent.com/90575401/187822506-f8044cf9-8d29-4c38-a623-4930d49d87a0.png)
