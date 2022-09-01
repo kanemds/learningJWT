@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const authRoutes = require('./routes/authRoutes')
 const cookieParser = require('cookie-parser')
-const { requireAuth } = require('./checkAuth/checkAuth')
+const { requireAuth, checkUser } = require('./checkAuth/checkAuth')
 const app = express()
 const PORT = 3000
 
@@ -29,6 +29,9 @@ mongoose
   .catch(err => {
     console.log(err.message)
   })
+
+// this will check every get request
+app.get('*', checkUser)
 
 app.get('/', (req, res) => res.render('home'))
 app.get('/coffee', requireAuth, (req, res) => res.render('coffee'))

@@ -71,3 +71,9 @@ module.exports.login_post = async (req, res) => {
     res.status(400).json({ errors })
   }
 }
+
+module.exports.logout_get = (req, res) => {
+  // instead of delete replace a new jwt then redirect
+  res.cookie('jwt', '', { maxAge: 1 })
+  res.redirect('/')
+}
