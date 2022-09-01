@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const authRoutes = require('./routes/authRoutes')
 const cookieParser = require('cookie-parser')
+const { requireAuth } = require('./checkAuth/checkAuth')
 const app = express()
 const PORT = 3000
 
@@ -30,7 +31,7 @@ mongoose
   })
 
 app.get('/', (req, res) => res.render('home'))
-app.get('/coffee', (req, res) => res.render('coffee'))
+app.get('/coffee', requireAuth, (req, res) => res.render('coffee'))
 app.use(authRoutes)
 
 // app.get('/set-cookie', (req, res) => {
