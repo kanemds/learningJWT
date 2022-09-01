@@ -1,23 +1,23 @@
 <%- include('partials/header') -%>
+  <div class="paper">
+    <form class="form">
+      <h2>Sign up</h2>
 
-  <form>
-    <h2>Sign up</h2>
+      <label for="email">Email</label>
+      <input type="text" name="email" required />
+      <div class="email error">
 
-    <label for="email">Email</label>
-    <input type="text" name="email" required />
-    <div class="email error">
+      </div>
 
-    </div>
+      <label for="password">Password</label>
+      <input type="password" name="password" required />
+      <div class="password error">
 
-    <label for="password">Password</label>
-    <input type="password" name="password" required />
-    <div class="password error">
+      </div>
 
-    </div>
-
-    <button>Sign up</button>
-  </form>
-
+      <button>Sign up</button>
+    </form>
+  </div>
   <script>
     const form = document.querySelector('form')
 
